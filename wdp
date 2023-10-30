@@ -1,0 +1,36 @@
+#liczba = float(input("liczba:"))
+
+#print(abs(liczba))
+
+#if liczba >= 0:
+#    print(liczba)
+#else:
+#    print(liczba * -1)
+
+#def abs_new(liczba):
+#    if liczba < 0:
+#        liczba *= -1
+#    return liczba
+#liczba = float(input("liczba:"))
+#liczba = abs_new(liczba)
+#print(f"liczba wynosi {liczba}")
+
+#def sgn(x):
+#    if x > 0:
+#        return 1
+#    elif x < 0:
+#        return -1
+#    else:
+#        return 0
+#liczba = float(input("podaj liczbe: "))
+#znak = sgn(liczba)
+#print(f"znak to: {znak}")
+
+
+liczba1 = float(input("liczba 1:"))
+liczba2 = float(input("liczba 2:"))
+if liczba2 == 0:
+    print("nie można dzielić przez 0")
+else:
+    wynik = liczba1/liczba2
+    print(wynik)
