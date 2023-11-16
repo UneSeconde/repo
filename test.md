@@ -49,6 +49,58 @@ select * from walizka;
 
 
 ```
+## zad 3
+```sql
+create table izba (
+adres_budynku varchar(50) not null,
+adres_izby varchar(50) not null,
+metraz mediumint unsigned,
+wlasciciel int,
+foreign key (wlasciciel)
+references postac(id_postaci) on delete set null
+);
+
+alter table izba add column
+kolor varchar(30) default 'czarny'
+after metraz;
+
+insert into izba values
+('kolejowa 23','spiżarnia',10,default,1);
+
+alter table izba add primary key(adres_budynku, nazwa_izby);
+
+```
+
+## zad 4
+```sql
+create table przetwory (
+id_przetworu int auto_increment primary key, 
+rok_produkcji smallint default 1654, 
+id_wykonawcy int, foreign key (id_wykonawcy) references postac(id_postaci),
+zawartosc varchar(100),
+dodatek varchar(50) default 'papryczka chilli',
+id_konsumenta int, foreign key (id_konsumenta) references postac(id_postaci)
+);
+
+insert into przetwory values (default,default,1,'bigos',default,3);
+```
+
+## zad 5
+```sql
+insert into postac values(default,'Gilli','wiking','1691-08-08',332); #to razy 5
+
+create table statek(
+nazwa_statku varchar(100) primary key not null,
+rodzaj_statku enum('slup','brygantyna','galeon'),
+data_wodowania date,
+max_ladownosc int unsigned);
+select * from postac;
+insert into statek values('tytanik','galeon','2020-11-12','83');
+insert into statek values('caleuche','slup','2018-10-11','20');
+update postac set funkcja='kapitan' where id_postaci=1;
+
+
+```
 
 
 https://dillinger.io/ <---- to ważne
