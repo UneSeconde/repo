@@ -112,8 +112,35 @@ max_ladownosc int unsigned);
 select * from postac;
 insert into statek values('tytanik','galeon','2020-11-12','83');
 insert into statek values('caleuche','slup','2018-10-11','20');
-update postac set funkcja='kapitan' where id_postaci=1;
 
++--------------+---------------+----------------+---------------+
+| nazwa_statku | rodzaj_statku | data_wodowania | max_ladownosc |
++--------------+---------------+----------------+---------------+
+| caleuche     | slup          | 2018-10-11     |            20 |
+| tytanik      | galeon        | 2020-11-12     |            83 |
++--------------+---------------+----------------+---------------+
+
+
+update postac set funkcja='kapitan' where id_postaci=1;
+alter table postac add jaki_Statek varchar(100);
+alter table postac add foreign key (jaki_statek) references statek(nazwa_Statku);
+update postac set jaki_statek='caleuche' where id_postaci=7;
+
++------------+----------+---------+------------+------+---------+-------------+
+| id_postaci | nazwa    | rodzaj  | data_ur    | wiek | funkcja | jaki_Statek |
++------------+----------+---------+------------+------+---------+-------------+
+|          1 | Bjorn    | wiking  | 1700-11-09 |  323 | kapitan | tytanik     |
+|          2 | Drozd    | ptak    | 2020-01-10 |    3 | NULL    | tytanik     |
+|          3 | Tesciowa | kobieta | 1935-05-03 |   88 | NULL    | NULL        |
+|          4 | Asgaut   | wiking  | 1702-03-12 |  321 | NULL    | caleuche    |
+|          5 | Bork     | wiking  | 1698-05-12 |  325 | NULL    | caleuche    |
+|          6 | Diarf    | wiking  | 1690-05-12 |  333 | NULL    | tytanik     |
+|          7 | Einar    | wiking  | 1693-10-03 |  330 | NULL    | caleuche    |
+|          8 | Gilli    | wiking  | 1691-08-08 |  332 | NULL    | tytanik     |
++------------+----------+---------+------------+------+---------+-------------+
+
+delete from izba;
+drop table izba;
 
 
 
