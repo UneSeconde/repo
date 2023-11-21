@@ -69,6 +69,14 @@ insert into izba values
 
 alter table izba add primary key(adres_budynku, nazwa_izby);
 
++---------------+------------+--------+--------+------------+
+| adres_budynku | nazwa_izby | metraz | kolor  | wlasciciel |
++---------------+------------+--------+--------+------------+
+| kolejowa 23   | spizarnia  |     10 | czarny |          1 |
++---------------+------------+--------+--------+------------+
+
+
+
 ```
 
 ## zad 4
@@ -83,6 +91,13 @@ id_konsumenta int, foreign key (id_konsumenta) references postac(id_postaci)
 );
 
 insert into przetwory values (default,default,1,'bigos',default,3);
+
+
++--------------+---------------+--------------+-----------+------------------+---------------+
+| id_przetworu | rok_produkcji | id_wykonawcy | zawartosc | dodatek          | id_konsumenta |
++--------------+---------------+--------------+-----------+------------------+---------------+
+|            1 |          1654 |            1 | bigos     | papryczka chilli |             3 |
++--------------+---------------+--------------+-----------+------------------+---------------+
 ```
 
 ## zad 5
@@ -98,6 +113,8 @@ select * from postac;
 insert into statek values('tytanik','galeon','2020-11-12','83');
 insert into statek values('caleuche','slup','2018-10-11','20');
 update postac set funkcja='kapitan' where id_postaci=1;
+
+
 
 
 ```
