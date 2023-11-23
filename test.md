@@ -1,6 +1,5 @@
-# Zadania lab 04
+# lab04
 ## zad 1
-###### zad 1, pkt 1
 ```sql
 create table postac( id_postaci int auto_increment primary key, nazwa varchar(40), rodzaj enum('wiking', 'ptak', 'kobieta'), data_ur date, wiek int unsigned);
 
@@ -183,10 +182,13 @@ alter table postac add check(wiek<1000);
 #Error Code: 3819. Check constraint 'postac_chk_1' is violated.
 
 ```
+## zad 4
+```sql
+alter table postac modify rodzaj enum('wiking','ptak','kobieta','syrena','waz');
+insert into postac values(53817293820,9,'waz loko','waz','1993-08-08',30,null,null);
 
 
 
 
-
-
+```
 https://dillinger.io/ <---- to ważne
