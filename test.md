@@ -166,11 +166,23 @@ alter table postac add column pesel char(11) first;
 update postac set pesel='53817293811' + id_postaci;
 alter table postac add primary key(pesel);
 
+alter table postac modify rodzaj enum('wiking','ptak','kobieta','syrena');
 
-
+insert into postac values(53817293819,8,'Gertruda nieszczera','syrena','1691-08-08',332,default,default);
 ```
 
+## zad 3
+```sql
+update postac set jaki_statek='tytanik' where nazwa like '%a%';
 
+insert into statek values('santa maria','brygantyna','1950-10-11','60');
+update statek set max_ladownosc=max_ladownosc*0.3 where data_wodowania >='1901-01-01' and data_wodowania <= '2000-12-31';
+
+alter table postac add check(wiek<1000);
+#update postac set wiek=2000 where nazwa='bjorn';
+#Error Code: 3819. Check constraint 'postac_chk_1' is violated.
+
+```
 
 
 
