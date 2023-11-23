@@ -145,33 +145,36 @@ drop table izba;
 
 
 ```
+# lab05
+## zad 1
+```sql
+delete from postac where wiek=332;
+
+alter table przetwory
+drop foreign key przetwory_ibfk_2;
+
+alter table postac change
+id_postaci id_postaci int;
+
+alter table postac drop primary key;
+
+```
+
+## zad 2
+```sql
+alter table postac add column pesel char(11) first;
+update postac set pesel='53817293811' + id_postaci;
+alter table postac add primary key(pesel);
+
+
+
+```
+
+
+
+
+
+
 
 
 https://dillinger.io/ <---- to ważne
-
-
-tekst **pogrubiony** lub _kursywa_
-
-```sql
-SELECT * FROM osoba;
-```
-
-```python
-def funkcja():
-  print("Ala ma kota")
-```
-polecenie `SELECT` służy wybieraniu danych z bazy
-
-lista tego typu
-1. Punkt 1.
-2.  Punkt 2.
-   2.1. punkt 2.1
-3. itd
-4. itd
-5. itd
-
-lista tamtego typu
-* punkt 1
-* punkt 2
-  * punkt 2.1
-  * punkt 2.2
