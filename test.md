@@ -192,4 +192,17 @@ insert into marynarz select * from postac where jaki_statek is not null;
 
 alter table marynarz add foreign key(jaki_statek) references statek(nazwa_statku);
 ```
+## zad 5
+```sql
+update postac set jaki_statek=null;
+
+delete from postac where id_postaci=4;
+
+alter table marynarz drop foreign key marynarz_ibfk_1;
+delete from statek;
+
+alter table postac drop foreign key postac_ibfk_1;
+drop table statek;
+```
+
 https://dillinger.io/ <---- to ważne
