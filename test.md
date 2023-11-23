@@ -203,6 +203,11 @@ delete from statek;
 
 alter table postac drop foreign key postac_ibfk_1;
 drop table statek;
+
+create table zwierz(id_zwierzaka int primary key auto_increment, nazwa varchar(80), wiek smallint);
+
+insert into zwierz values(default, 'drozd', 3);
+insert into zwierz values(default, 'waz loko', 30);
 ```
 
 https://dillinger.io/ <---- to ważne
