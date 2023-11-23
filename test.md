@@ -187,8 +187,9 @@ alter table postac add check(wiek<1000);
 alter table postac modify rodzaj enum('wiking','ptak','kobieta','syrena','waz');
 insert into postac values(53817293820,9,'waz loko','waz','1993-08-08',30,null,null);
 
+create table marynarz like postac;
+insert into marynarz select * from postac where jaki_statek is not null;
 
-
-
+alter table marynarz add foreign key(jaki_statek) references statek(nazwa_statku);
 ```
 https://dillinger.io/ <---- to ważne
