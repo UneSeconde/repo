@@ -263,6 +263,51 @@ select concat(nazwa, ' netto = ', waga*0.7, ', waga odpadow = ', waga*0.3) from 
 select * from zasob where rodzaj is null;
 select distinct nazwa,rodzaj from zasob where nazwa like 'Ba%' or nazwa like '%os'order by nazwa;
 ```
+# lab 07
 
 
+## zad 1
+```sql
+select avg(waga) from kreatura where rodzaj='wiking';
+
+select rodzaj, avg(waga), count(*) from kreatura group by rodzaj;
+
+select rodzaj, avg(year(curdate()) - year(dataur)) as 'sredni wiek' from kreatura group by rodzaj;
+```
+
+## zad 2
+```sql
+select rodzaj, sum(waga) as 'waga calkowita' from zasob group by rodzaj;
+
+select nazwa, avg(waga) from zasob where ilosc >= 4 group by nazwa having sum(waga) > 10 ;
+
+select rodzaj, count(distinct nazwa) as liczba from zasob group by rodzaj having liczba > 1;
+```
+
+## zad 3
+```sql
+select k.nazwa, e.idzasobu, e.ilosc from kreatura k
+inner join ekwipunek e
+on k.idkreatury=e.idKreatury
+inner join zasob z on z.idZasobu=e.idzasobu;
+
+select * from kreatura k left join ekwipunek e on k.idkreatury=e.idkreatury where e.idKreatury is null;
+
+select idkreatury from kreatura where idkreatury not in (select distinct idkreatury from ekwipunek where idKreatury is not null);
+```
+
+## zad 4
+```sql
+SELECT kreatura.nazwa, kreatura.dataur, zasob.nazwa FROM ekwipunek natural join zasob, kreatura where kreatura.rodzaj='wiking' and year(dataUr) between 1670 and 1679;
+
+SELECT kreatura.nazwa, kreatura.dataur, zasob.nazwa, zasob.rodzaj FROM ekwipunek natural join zasob, kreatura where zasob.rodzaj='jedzenie' and kreatura.dataur is not null order by kreatura.dataur desc limit 5;
+
+select concat(k1.nazwa, " - ", k2.nazwa) as relacja from kreatura k1 inner join kreatura k2 where k1.idkreatury - k2.idkreatury =5;
+```
+
+## zad 5
+```sql
+SELECT kreatura.rodzaj, avg(ekwipunek.ilosc*zasob.waga) FROM kreatura inner join ekwipunek on kreatura.idkreatury=ekwipunek.idKreatury inner join zasob on ekwipunek.idzasobu=zasob.idkreatury
+where kreatura.rodzaj not in ('malpa', 'waz') group by kreatura.rodzaj having sum(ekwipunek.ilosc)<30; #nie trybi
+```
 https://dillinger.io/ <---- to ważne
