@@ -307,7 +307,13 @@ select concat(k1.nazwa, " - ", k2.nazwa) as relacja from kreatura k1 inner join 
 
 ## zad 5
 ```sql
-SELECT kreatura.rodzaj, avg(ekwipunek.ilosc*zasob.waga) FROM kreatura inner join ekwipunek on kreatura.idkreatury=ekwipunek.idKreatury inner join zasob on ekwipunek.idzasobu=zasob.idkreatury
-where kreatura.rodzaj not in ('malpa', 'waz') group by kreatura.rodzaj having sum(ekwipunek.ilosc)<30; #nie trybi
+SELECT kreatura.rodzaj, avg(zasob.waga * ekwipunek.ilosc) FROM kreatura inner join ekwipunek on kreatura.idkreatury=ekwipunek.idKreatury inner join zasob on ekwipunek.idzasobu=zasob.idkreatury
+where kreatura.rodzaj not in ('malpa', 'waz') and ekwipunek.ilosc<30 group by kreatura.rodzaj; #dalej cos nie trybi nie mam pojecia co czas wyrzucic monitor za okno
+
+select a.nazwa, a.rodzaj, a.dataur from kreatura a,
+(select min(dataur) min, max(dataur) max
+from kreatura group by rodzaj) b
+where b.min = a.dataur or b.max=a.dataur;
+
 ```
 https://dillinger.io/ <---- to ważne
