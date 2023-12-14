@@ -314,6 +314,20 @@ select a.nazwa, a.rodzaj, a.dataur from kreatura a,
 (select min(dataur) min, max(dataur) max
 from kreatura group by rodzaj) b
 where b.min = a.dataur or b.max=a.dataur;
+```
+
+# lab 8
+
+## zad 1
+```sql
+select k.idKreatury, k.nazwa, u.id_uczestnika from kreatura k left join uczestnicy u on k.idkreatury=u.id_uczestnika where u.id_uczestnika is null;
+
+select wyprawa.nazwa, sum(kreatura.udzwig) from uczestnicy inner join wyprawa on uczestnicy.id_wyprawy=wyprawa.id_wyprawy inner join kreatura on uczestnicy.id_uczestnika=kreatura.idKreatury group by wyprawa.nazwa;
+
+```
+## zad 2
+```sql
+select wyprawa.nazwa, count(kreatura.idKreatury) as 'liczba uczestnikow', group_concat(kreatura.nazwa) as 'uczestnicy' from uczestnicy inner join wyprawa on uczestnicy.id_wyprawy=wyprawa.id_wyprawy inner join kreatura on uczestnicy.id_uczestnika=kreatura.idKreatury group by wyprawa.nazwa;
 
 ```
 https://dillinger.io/ <---- to ważne
