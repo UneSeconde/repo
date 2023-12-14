@@ -329,5 +329,7 @@ select wyprawa.nazwa, sum(kreatura.udzwig) from uczestnicy inner join wyprawa on
 ```sql
 select wyprawa.nazwa, count(kreatura.idKreatury) as 'liczba uczestnikow', group_concat(kreatura.nazwa) as 'uczestnicy' from uczestnicy inner join wyprawa on uczestnicy.id_wyprawy=wyprawa.id_wyprawy inner join kreatura on uczestnicy.id_uczestnika=kreatura.idKreatury group by wyprawa.nazwa;
 
+select etapy_wyprawy.idwyprawy, etapy_wyprawy.dziennik, sektor.nazwa as 'nazwa sektora', kreatura.nazwa as 'kierownik' from etapy_wyprawy inner join sektor on etapy_wyprawy.sektor=sektor.id_sektora 
+inner join wyprawa on etapy_wyprawy.idwyprawy=wyprawa.id_wyprawy inner join kreatura on wyprawa.kierownik=kreatura.idKreatury order by wyprawa.data_rozpoczecia asc, etapy_wyprawy.kolejnosc asc;
 ```
 https://dillinger.io/ <---- to ważne
