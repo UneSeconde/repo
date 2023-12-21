@@ -332,4 +332,24 @@ select wyprawa.nazwa, count(kreatura.idKreatury) as 'liczba uczestnikow', group_
 select etapy_wyprawy.idwyprawy, etapy_wyprawy.dziennik, sektor.nazwa as 'nazwa sektora', kreatura.nazwa as 'kierownik' from etapy_wyprawy inner join sektor on etapy_wyprawy.sektor=sektor.id_sektora 
 inner join wyprawa on etapy_wyprawy.idwyprawy=wyprawa.id_wyprawy inner join kreatura on wyprawa.kierownik=kreatura.idKreatury order by wyprawa.data_rozpoczecia asc, etapy_wyprawy.kolejnosc asc;
 ```
+
+## zad 3
+```sql
+select s.nazwa, ifnull(count(ew.sektor),0) as 'ile razy odwiedzone' from sektor s left join etapy_wyprawy ew on s.id_sektora=ew.sektor group by s.nazwa;
+
+select k.nazwa, if (count(u.id_uczestnika)>0, 'brał udział w wyprawie','nie bral udzialu w wyprawie') as 'czy bral udzial w wyprawie' from kreatura k left join uczestnicy u  on u.id_uczestnika=k.idKreatury group by k.nazwa;
+```
+## zad 4
+```sql
+select w.nazwa, sum(length(ew.dziennik)) as 'liczba znakow'from wyprawa w inner join etapy_wyprawy ew on w.id_wyprawy=ew.idWyprawy group by w.nazwa having sum(length(ew.dziennik))<400;
+
+select u.id_wyprawy, w.nazwa, sum(e.ilosc * z.waga) / count(distinct(u.id_uczestnika)) as 'jakas tam srednia' from uczestnicy u inner join ekwipunek e on e.idKreatury=u.id_uczestnika inner join zasob z on z.idZasobu=e.idZasobu 
+inner join wyprawa w on w.id_wyprawy=u.id_wyprawy group by u.id_wyprawy, w.nazwa;
+```
+
+## zad 5
+```sql
+select w.id_wyprawy, s.nazwa, k.nazwa, datediff(w.data_rozpoczecia, k.dataur) as 'data rozpoczecia w dniach' from kreatura k inner join uczestnicy u on u.id_uczestnika=k.idKreatury inner join wyprawa w on w.id_wyprawy=u.id_wyprawy 
+inner join etapy_wyprawy ew on ew.idwyprawy=w.id_wyprawy inner join sektor s on s.id_sektora=ew.sektor where ew.sektor=7;
+```
 https://dillinger.io/ <---- to ważne
