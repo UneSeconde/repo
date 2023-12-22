@@ -307,8 +307,8 @@ select concat(k1.nazwa, " - ", k2.nazwa) as relacja from kreatura k1 inner join 
 
 ## zad 5
 ```sql
-SELECT kreatura.rodzaj, avg(zasob.waga * ekwipunek.ilosc) FROM kreatura inner join ekwipunek on kreatura.idkreatury=ekwipunek.idKreatury inner join zasob on ekwipunek.idzasobu=zasob.idkreatury
-where kreatura.rodzaj not in ('malpa', 'waz') and ekwipunek.ilosc<30 group by kreatura.rodzaj; #dalej cos nie trybi nie mam pojecia co czas wyrzucic monitor za okno
+SELECT kreatura.rodzaj, avg(zasob.waga * ekwipunek.ilosc) FROM kreatura inner join ekwipunek on kreatura.idkreatury=ekwipunek.idKreatury inner join zasob on ekwipunek.idzasobu=zasob.idzasobu
+where kreatura.rodzaj not in ('malpa', 'waz') and ekwipunek.ilosc<30 group by kreatura.rodzaj;
 
 select a.nazwa, a.rodzaj, a.dataur from kreatura a,
 (select min(dataur) min, max(dataur) max
