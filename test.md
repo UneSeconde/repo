@@ -394,6 +394,15 @@ delete from wyprawa where kierownik=9;
 
 ## zad 3
 ```sql
+DELIMITER $$
+CREATE PROCEDURE eliksir_sily(IN id int)
+BEGIN
+update kreatura set udzwig=udzwig*1.2 where idkreatury=id;
+END
+$$
+DELIMITER ;
+
+CALL eliksir_sily(1);
 
 
 
