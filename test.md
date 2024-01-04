@@ -352,4 +352,45 @@ inner join wyprawa w on w.id_wyprawy=u.id_wyprawy group by u.id_wyprawy, w.nazwa
 select w.id_wyprawy, s.nazwa, k.nazwa, datediff(w.data_rozpoczecia, k.dataur) as 'data rozpoczecia w dniach' from kreatura k inner join uczestnicy u on u.id_uczestnika=k.idKreatury inner join wyprawa w on w.id_wyprawy=u.id_wyprawy 
 inner join etapy_wyprawy ew on ew.idwyprawy=w.id_wyprawy inner join sektor s on s.id_sektora=ew.sektor where ew.sektor=7;
 ```
+
+# lab 9
+
+## zad 1
+```sql
+DELIMITER //
+CREATE TRIGGER kreatura_before_insert
+BEFORE INSERT ON kreatura
+FOR EACH ROW
+BEGIN
+  IF NEW.waga <= 0
+  THEN
+    SET NEW.waga = 0;
+  END IF;
+END
+//
+DELIMITER ;
+```
+
+## zad 2
+```sql
+create table archiwum_wypraw(id_wyprawy int, nazwa varchar(100), data_rozpoczecia date, data_zakonczenia date, kierownik varchar(100));
+
+insert into wyprawa values(5,'test', '1212-12-12', '1212-12-21
+
+DELIMITER //
+CREATE TRIGGER wyprawa_before_delete
+BEFORE delete ON wyprawa
+FOR EACH ROW
+BEGIN
+  insert into archiwum_wypraw
+  select w.id_wyprawy, w.nazwa, w.data_rozpoczecia, w.data_zakonczenia, k.nazwa 
+  from wyprawa w inner join kreatura k on w.kierownik=k.idKreatury where id_wyprawy=old.id_wyprawy;
+END
+//
+DELIMITER ;
+
+delete from wyprawa where kierownik=9;
+
+
+```
 https://dillinger.io/ <---- to ważne
