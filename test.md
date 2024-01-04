@@ -375,7 +375,7 @@ DELIMITER ;
 ```sql
 create table archiwum_wypraw(id_wyprawy int, nazwa varchar(100), data_rozpoczecia date, data_zakonczenia date, kierownik varchar(100));
 
-insert into wyprawa values(5,'test', '1212-12-12', '1212-12-21)
+insert into wyprawa values(5,'test', '1212-12-12', '1212-12-21', 9);
 
 DELIMITER //
 CREATE TRIGGER wyprawa_before_delete
@@ -390,6 +390,11 @@ END
 DELIMITER ;
 
 delete from wyprawa where kierownik=9;
+```
+
+## zad 3
+```sql
+
 
 
 ```
