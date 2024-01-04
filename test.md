@@ -407,4 +407,54 @@ CALL eliksir_sily(1);
 
 
 ```
+
+## zad 4
+```sql
+create table system_alarmowy(id_alarmu int, wiadomosc varchar(100));
+
+
+DELIMITER $$
+
+CREATE TRIGGER uczestnicy_after_insert
+AFTER INSERT ON uczestnicy
+FOR EACH ROW
+BEGIN
+	DECLARE tesciowa varchar(100);
+	DECLARE sektor_id integer;
+	DECLARE czy_tesciowa bool;
+	DECLARE czy_chata_dziadka bool;
+	SET tesciowa = 'Tesciowa';
+	SET sektor_id = 7;
+	
+
+    
+IF tesciowa in (
+	SELECT nazwa from kreatura WHERE idKreatury in 
+	( SELECT id_uczestnika from uczestnicy where id_wyprawy=NEW.id_wyprawy)) 
+	
+THEN 
+    
+	SET czy_tesciowa = true;
+	END IF;
+    
+IF sektor_id in (
+	SELECT sektor FROM etapy_wyprawy WHERE idWyprawy=NEW.id_wyprawy
+	) 
+THEN 
+	SET czy_chata_dziadka = true;
+END IF;
+    
+IF czy_tesciowa AND czy_chata_dziadka
+    
+THEN  
+	INSERT INTO system_alarmowy VALUES(default,'Tesciowa nadchodzi',default);
+END IF;
+
+END
+$$
+
+DELIMITER ;
+```
+
+
 https://dillinger.io/ <---- to ważne
